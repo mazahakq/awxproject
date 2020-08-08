@@ -1,0 +1,8 @@
+---
+  - name: RUN
+    hosts: all
+    become: yes
+    gather_facts: yes
+    roles:
+      - first_setup
+#      - k8s-project
