@@ -1,0 +1,15 @@
+- name: DhcpNameServer
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: rename hostname
+    hostname:
+    name: "{{hostnamenew}}"
+
+  - name: Dhcp restart
+    shell: dhclient -r; dhclient -v eth0 -H "{{hostnamenew}}"
+
+  - name: Reboot host
+    reboot:
