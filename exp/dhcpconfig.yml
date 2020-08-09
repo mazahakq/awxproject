@@ -1,0 +1,14 @@
+- name: DhcpClientConfig
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: DhcpClientConfig create line
+    copy:
+      content: 'send host-name = gethostname();'
+      dest: /etc/dhcp/dhclient.conf
+      mode: '0644'
+      owner: root
+      group: root
+      state: file
