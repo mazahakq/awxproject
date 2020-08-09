@@ -11,6 +11,9 @@
     hostname:
       name: "{{hostnamenew}}"
 
+  - name: Reboot host
+    reboot:
+
   - name: Dhcp restart
     shell: dhclient -r; dhclient -v eth0 -H "{{hostnamenew}}"
 
