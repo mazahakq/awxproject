@@ -33,6 +33,21 @@
       dest: "{{file_dest}}"
       mode: 0755
 
+  - name: DhcpClientConfig create line
+    copy:
+      content: 'send host-name = gethostname();'
+      dest: /etc/dhcp/dhclient.conf
+      mode: '0644'
+      owner: root
+      group: root
+
+  - name: service restart
+    systemd:
+      service: "{{item}}"
+      state: restarted
+      daemon_reload: yes
+    loop: "{{services_restart}}"
+
   - name: service add enable start
     systemd:
       service: "{{item}}"

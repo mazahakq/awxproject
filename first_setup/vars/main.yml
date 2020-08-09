@@ -9,6 +9,9 @@
              - nano
              - epel-release
 
+    services_restart:
+                 - network
+
     services_add:
                  - smb
                  - nmb
