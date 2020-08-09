@@ -9,7 +9,7 @@
 
   - name: rename hostname
     hostname:
-    name: "{{hostnamenew}}"
+      name: "{{hostnamenew}}"
 
   - name: Dhcp restart
     shell: dhclient -r; dhclient -v eth0 -H "{{hostnamenew}}"
