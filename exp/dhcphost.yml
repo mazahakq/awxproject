@@ -4,8 +4,9 @@
 
   tasks:
 
-  - set_fact:
-    hostvarname: "{{paternname}}{{itemnum+groups[groupdef].index(inventory_hostname)+1}}"
+  - name: NameHostNew
+    set_fact:
+      hostvarname: "{{paternname}}{{itemnum+groups[groupdef].index(inventory_hostname)+1}}"
 
   - name: rename hostname
     hostname:
