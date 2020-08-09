@@ -1,0 +1,8 @@
+- name: DhcpRenew
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: Dhcp restart
+    shell: dhclient -r; dhclient -v eth0 -H $HOSTNAME
