@@ -6,6 +6,9 @@
     passadd: $6$fgfdghfh665$gz39a8GXO4PnCgQTG4hqiR5ougrIT1.LEFg6SC9hwVg4v2TAtoyu3Lo8vGEAPhNGjZj5H9z9.REQR9/Dk4eUe/
     packages:
              - samba
+             - samba-client
+             - samba-winbind
+             - bind-utils
              - nano
              - epel-release
 
@@ -15,6 +18,7 @@
     services_add:
                  - smb
                  - nmb
+                 - winbind
 
     services_del:
                  - firewalld
