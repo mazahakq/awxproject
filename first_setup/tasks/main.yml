@@ -62,15 +62,16 @@
       state: stopped
     loop: "{{services_del}}"
 
-  - name: bak nsswitch.conf
-    copy:
-      remote_src: yes
-      src: /etc/nsswitch.conf
-      dest: /etc/nsswitch.conf.bak
+  #- name: bak nsswitch.conf
+  #  copy:
+  #    remote_src: yes
+  #    src: /etc/nsswitch.conf
+  #    dest: /etc/nsswitch.conf.bak
   
   - name: Update nsswitch.conf
     lineinfile:
-       path: /etc/nsswitch.conf.bak
+       path: /etc/nsswitch.conf
        regexp: '^hosts: '
        insertafter: '^#hosts: '
        line: 'hosts:      files dns myhostname wins'
+       backup: yes
