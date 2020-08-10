@@ -75,3 +75,8 @@
        insertafter: '^#hosts: '
        line: 'hosts:      files dns myhostname wins'
        backup: yes
+
+  - name: Put SELinux in permissive mode, logging actions that would be blocked.
+    selinux:
+      policy: targeted
+      state: permissive
