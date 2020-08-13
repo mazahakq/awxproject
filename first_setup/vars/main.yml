@@ -12,6 +12,7 @@
              - nano
              - epel-release
              - python3
+             - net-tools
 
     services_restart:
                  - network
