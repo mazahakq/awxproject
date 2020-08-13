@@ -1,8 +1,13 @@
 ---
 # tasks file for k8s-project
 
-  - name: Copy
-    template:
-      src: filetest.j2
-      dest: /tmp/
-      mode: 0600
+#  - name: Copy
+#    template:
+#      src: filetest.j2
+#      dest: /tmp/
+#      mode: 0600
+
+- name: Install packages
+  yum:
+    pkg: "{{packages}}"
+    state: present
