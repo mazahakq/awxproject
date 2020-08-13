@@ -63,7 +63,7 @@
 - name: Setting swap fstab.
   replace:
     path: /etc/fstab
-    regexp: "{{swaptextmount}}"
+    regexp: "^{{swaptextmount}}"
     replace: "#{{swaptextmount}}"
   
   
@@ -85,7 +85,7 @@
       #owner: "{{ansible_user}}"
   
   - name: kubeadm initial
-    shell: ~/kubeadminit.sh
+    shell: /home/{{ansible_user}}/kubeadminit.sh
   
   - name: Create kube directory
     become: no
