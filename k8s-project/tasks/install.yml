@@ -1,0 +1,60 @@
+- name: Download web repo
+  get_url:
+    url: "{{item.url}}"
+    dest: "{{localrep}}{{item.file}}"
+  loop: "{{repos}}"
+  when: item.type == "web"
+
+- name: Download file repo
+  copy:
+    src: "{{item.file}}"
+    dest: "{{localrep}}{{item.file}}"
+  loop: "{{repos}}"
+  when: item.type == "file"
+
+- name: Install packages
+  yum:
+    pkg: "{{item.name}}"
+    state: present
+    disable_gpg_check: yes
+  loop: "{{packages}}"
+  when: role == "master" or item.type == role
+
+- name: modprobe command
+  modprobe:
+    name: "{{item}}"
+    state: present
+  loop:
+    - overlay
+    - br_netfilter
+
+- name: Create Copy File
+  copy:
+    src: "{{item.source}}"
+    dest: "{{item.dest}}"
+  loop: "{{filecopy}}"
+
+- name: sysctl command
+  shell: sysctl --system
+
+- name: service add enable start
+  systemd:
+    service: "{{item}}"
+    enabled: yes
+    state: started
+  loop: "{{services_add}}"
+
+- name: Create groups
+  group:
+    name: "{{item}}"
+    state: present
+  loop: "{{group_add}}"
+
+- name: Off SWAP
+  shell: swapoff -a
+
+- name: Setting swap fstab.
+  replace:
+    path: /etc/fstab
+    regexp: "^{{swaptextmount}}"
+    replace: "#{{swaptextmount}}"

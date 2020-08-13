@@ -1,0 +1,12 @@
+- block:
+    - name: Copy File kubeadmjoin.sh
+      template:
+        src: ./kubeadmjoin.j2
+        dest: ~/kubeadmjoin.sh
+        mode: "0755"
+        become: no
+
+  #- name: Add kub worker
+  #  shell: ~/kubeadmjoin.sh
+
+  when: role == "worker"
