@@ -22,10 +22,11 @@
 
 - name: Install packages
   yum:
-    pkg: "{{packages.name}}"
+    pkg: "{{item.name}}"
     state: present
     disable_gpg_check: yes
-  when: role == "master"
+  loop: "{{packages}}"
+  when: role == "master" or packages.type == role
 
 - name: service add enable start
   systemd:
