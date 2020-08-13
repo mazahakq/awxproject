@@ -122,9 +122,6 @@
     become: no
     shell: "kubectl apply -f ~/{{item.name}}"
     loop: "{{kubsubnet}}"
-  
-  - set_fact:
-      masterhost: "{{ansible_hostname}}"
 
   when: role == "master1"
 
