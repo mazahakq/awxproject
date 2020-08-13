@@ -118,9 +118,9 @@
     loop: "{{kubsubnet}}"
     when: item.type == "file"
 
-  - name: kubeadm initial
+  - name: kubectl apply subnet
     become: no
-    shell: kubectl apply -f "~/{{item.name}}"
+    shell: "kubectl apply -f ~/{{item.name}}"
     loop: "{{kubsubnet}}"
   
   when: role == "master"
@@ -129,8 +129,8 @@
 
   - name: Copy File kubeadmjoin.sh
     template:
-      src: ./kubeadminit.j2
-      dest: ~/kubeadminit.sh
+      src: ./kubeadmjoin.j2
+      dest: ~/kubeadmjoin.sh
       mode: "0755"
       become: no
 
