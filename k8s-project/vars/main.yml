@@ -19,4 +19,4 @@ packages:
     - docker-ce
     - docker-ce-cli
     - containerd.io
-    #- kubectl
+    - kubectl
