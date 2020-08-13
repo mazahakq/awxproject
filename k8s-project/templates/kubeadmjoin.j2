@@ -1,4 +1,4 @@
 #!/bin/bash
-kubeadm join {{hostvars[master]['ansible_env'].ansible_hostname}}:6443 \
+kubeadm join {{masterserver}}:6443 \
 --token "{{kubtoken}}" \
 --discovery-token-unsafe-skip-ca-verification
