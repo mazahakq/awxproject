@@ -134,10 +134,6 @@
       mode: "0755"
       become: no
 
-  - name: find several related variables
-    debug: 
-      msg: "{{ hostvars['master'].ansible_hostname }}"
-
   #- name: Add kub worker
   #  shell: ~/kubeadmjoin.sh
 
