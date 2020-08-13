@@ -123,6 +123,15 @@
     shell: "kubectl apply -f ~/{{item.name}}"
     loop: "{{kubsubnet}}"
   
+  - set_fact:
+      masterhost: "{{ansible_hostname}}"
+
+  when: role == "master1"
+
+- block:
+  - set_fact:
+      masterhost: "{{ansible_hostname}}"
+
   when: role == "master"
 
 - block:
@@ -134,12 +143,11 @@
       mode: "0755"
       become: no
 
-  - set_fact:
-      masterhost: "{{ansible_hostname}}"
-    when: role == "master"
+  - debug:
+      var: masterhost
 
-  - name: Add kub worker
-    shell: ~/kubeadmjoin.sh
+  #- name: Add kub worker
+  #  shell: ~/kubeadmjoin.sh
 
   when: role == "worker"
 
