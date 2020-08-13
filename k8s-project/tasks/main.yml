@@ -9,7 +9,7 @@
 - name: Download repo
   get_url:
     url: "{{item.url}}"
-    dest: /etc/yum.repos.d/"{{item.file}}"
+    dest: "/etc/yum.repos.d/{{item.file}}"
   loop: "{{repos}}"
 
 - name: Install packages
