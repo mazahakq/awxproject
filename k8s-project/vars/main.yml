@@ -2,14 +2,21 @@
 # vars file for k8s-project
 
 position: test
+localrep: /etc/yum.repos.d/
 repos:
     - {
           name: "docker-ce",
           file: docker-ce.repo,
           url: "https://download.docker.com/linux/centos/docker-ce.repo",
+          type: "web"
+      }
+    - {
+          name: "kubernetes",
+          file: kubernetes.repo,
+          type: "file"
       }
 packages:
     - docker-ce
     - docker-ce-cli
     - containerd.io
-    #- kubernetes
+    #- kubectl

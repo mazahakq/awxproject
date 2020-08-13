@@ -6,11 +6,19 @@
 #      src: filetest.j2
 #      dest: /tmp/
 #      mode: 0600
-- name: Download repo
+- name: Download web repo
   get_url:
     url: "{{item.url}}"
-    dest: "/etc/yum.repos.d/{{item.file}}"
+    dest: "{{localrep}}{{item.file}}"
   loop: "{{repos}}"
+  when: item.type == "web"
+
+- name: Download file repo
+  copy:
+    src: "{{item.file}}"
+    dest: "{{localrep}}{{item.file}}"
+  loop: "{{repos}}"
+  when: item.type == "file"
 
 - name: Install packages
   yum:
