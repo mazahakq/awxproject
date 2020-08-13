@@ -2,5 +2,5 @@
 kubeadm init \
 --token "{{kubtoken}}" \
 --certificate-key "{{kubcert}}" \
---pod-network-cidr={{kubcidr}}
+--pod-network-cidr={{kubcidr}} \
 --config /home/{{ansible_user}}/config.yaml
