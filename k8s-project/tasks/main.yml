@@ -143,8 +143,9 @@
       mode: "0755"
       become: no
 
-  - debug:
-      var: masterhost
+  - name: find several related variables
+    debug: 
+      msg: "{{ lookup('masterhost', 'ansible_play_hosts_all') }}"
 
   #- name: Add kub worker
   #  shell: ~/kubeadmjoin.sh
