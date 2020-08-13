@@ -57,3 +57,12 @@
     name: "{{item}}"
     state: present
   loop: "{{group_add}}"
+
+- name: Off SWAP
+  shell: swapoff -a
+
+- name: Setting swap fstab.
+  replace:
+    path: /etc/fstab
+    regexp: "{{swaptextmount}}"
+    replace: "#{{swaptextmount}}"
