@@ -6,13 +6,10 @@
 #      src: filetest.j2
 #      dest: /tmp/
 #      mode: 0600
-
-- name: Add docker-ce
-  yum_repository:
-    name: "{{item.name}}"
-    description: "{{item.description}}"
-    baseurl: "{{item.url}}"
-    file: "{{item.file}}"
+- name: Download repo
+  get_url:
+    url: "{{item.url}}"
+    dest: /etc/yum.repos.d/"{{item.file}}"
   loop: "{{repos}}"
 
 - name: Install packages

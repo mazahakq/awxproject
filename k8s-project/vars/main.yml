@@ -5,9 +5,8 @@ position: test
 repos:
     - {
           name: "docker-ce",
-          description: "docker-ce",
           file: docker-ce.repo,
-          url: "https://download.docker.com/linux/centos/",
+          url: "https://download.docker.com/linux/centos/docker-ce.repo",
       }
 packages:
     - docker-ce
