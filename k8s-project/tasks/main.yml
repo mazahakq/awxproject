@@ -68,7 +68,6 @@
   
   
 - block:
-  include_vars:
 
   - name: Copy File kubeadminit.sh
     become: no
@@ -127,7 +126,6 @@
   when: role == "master"
 
 - block:
-  include_vars:
 
   - name: Copy File kubeadmjoin.sh
     template:
