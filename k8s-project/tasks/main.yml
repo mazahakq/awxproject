@@ -22,9 +22,10 @@
 
 - name: Install packages
   yum:
-    pkg: "{{packages}}"
+    pkg: "{{packages.name}}"
     state: present
     disable_gpg_check: yes
+  when: item.type == {{role}} or item.type == "master"
 
 - name: service add enable start
   systemd:
@@ -35,6 +36,6 @@
 
 - name: Create groups
   group:
-    name: "{{item}}"     
+    name: "{{item}}"
     state: present
   loop: "{{group_add}}"

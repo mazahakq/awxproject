@@ -11,6 +11,7 @@
              - bind-utils
              - nano
              - epel-release
+             - python3
 
     services_restart:
                  - network

@@ -16,7 +16,9 @@ services_add:
 group_add:
     - docker
 packages:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    - kubectl
+    - {name: "docker-ce", type: "worker"}
+    - {name: "docker-ce-cli", type: "worker"}
+    - {name: "containerd.io", type: "worker"}
+    - {name: "kubectl", type: "worker"}
+    - {name: "kubelet", type: "worker"}
+    - {name: "kubeadm", type: "master"}
