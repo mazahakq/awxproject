@@ -6,7 +6,7 @@ repos:
     - {
           name: "docker-ce",
           description: "docker-ce",
-          url: "https://download.docker.com/linux/centos/docker-ce.repo",
+          url: "https://download.docker.com/linux/centos/",
       }
 packages:
     - docker-ce
