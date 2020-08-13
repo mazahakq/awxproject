@@ -10,6 +10,7 @@
 - name: Add docker-ce
   yum_repository:
     name: "{{item.name}}"
+    description: "{{item.description}}"
     baseurl: "{{item.url}}"
   loop: "{{repos}}"
 
