@@ -9,7 +9,7 @@
         mode: "0755"
         
 
-  #- name: Add kub worker
-  #  shell: ~/kubeadmjoin.sh
+    - name: Add kub worker
+      shell: /home/{{ansible_user}}/kubeadmjoin.sh
 
   when: role == "worker"

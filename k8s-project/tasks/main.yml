@@ -7,5 +7,5 @@
 #      mode: 0600
 
 #- include: install.yml
-#- include: createmaster.yml
+- include: createmaster.yml
 - include: createworker.yml
