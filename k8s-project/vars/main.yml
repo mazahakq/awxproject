@@ -10,11 +10,9 @@ repos:
           url: "https://download.docker.com/linux/centos/docker-ce.repo",
           type: "web"
       }
-    - {
-          name: "kubernetes",
-          file: kubernetes.repo,
-          type: "file"
-      }
+    - { name: "kubernetes", file: kubernetes.repo, type: "file" }
+services_add:
+    - docker
 packages:
     - docker-ce
     - docker-ce-cli

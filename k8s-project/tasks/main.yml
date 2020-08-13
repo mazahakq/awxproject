@@ -25,3 +25,10 @@
     pkg: "{{packages}}"
     state: present
     disable_gpg_check: yes
+
+- name: service add enable start
+  systemd:
+    service: "{{item}}"
+    enabled: yes
+    state: started
+  loop: "{{services_add}}"
