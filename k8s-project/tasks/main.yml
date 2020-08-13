@@ -129,12 +129,6 @@
   when: role == "master1"
 
 - block:
-  - set_fact:
-      masterhost: "{{ansible_hostname}}"
-
-  when: role == "master"
-
-- block:
 
   - name: Copy File kubeadmjoin.sh
     template:
@@ -145,7 +139,7 @@
 
   - name: find several related variables
     debug: 
-      msg: "{{ hostvars['master'].masterhost }}"
+      msg: "{{ hostvars['master'].ansible_hostname }}"
 
   #- name: Add kub worker
   #  shell: ~/kubeadmjoin.sh
