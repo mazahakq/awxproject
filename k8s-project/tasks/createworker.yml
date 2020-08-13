@@ -1,6 +1,6 @@
 - block:
     - set_fact:
-        masterserver: "{{hostvars[master]['ansible_env'].ansible_hostname}}"
+        masterserver: "{{hostvars[master].ansible_hostname}}"
     - name: Copy File kubeadmjoin.sh
       become: no
       template:
