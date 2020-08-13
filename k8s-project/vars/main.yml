@@ -22,4 +22,9 @@ packages:
     - { name: "containerd.io", type: "worker" }
     - { name: "kubelet", type: "worker" }
     - { name: "kubeadm", type: "worker" }
+    - { name: "lvm2", type: "worker" }
     - { name: "kubectl", type: "master" }
+
+filecopy:
+    - { source: daemon.json, dest: /etc/docker/ }
+    - { source: 99-kubernetes-cri.conf, dest: /etc/sysctl.d/ }

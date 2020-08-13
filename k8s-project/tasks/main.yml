@@ -28,6 +28,23 @@
   loop: "{{packages}}"
   when: role == "master" or item.type == role
 
+- name: modprobe command
+  modprobe:
+    name: "{{item}}"
+    state: present
+  loop:
+    - overlay
+    - br_netfilter
+
+- name: sysctl command
+  shell: sysctl --system
+
+- name: Create Copy File
+  copy:
+    src: "{{item.source}}"
+    dest: "{{item.dest}}"
+  loop: "{{filecopy}}"
+
 - name: service add enable start
   systemd:
     service: "{{item}}"
