@@ -2,5 +2,13 @@
 # vars file for k8s-project
 
 position: test
+repos:
+    - {
+          name: "docker-ce",
+          url: "https://download.docker.com/linux/centos/docker-ce.repo",
+      }
 packages:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
     - kubernetes
