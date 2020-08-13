@@ -24,4 +24,4 @@
   yum:
     pkg: "{{packages}}"
     state: present
-    #disable_gpg_check: yes
+    disable_gpg_check: yes
