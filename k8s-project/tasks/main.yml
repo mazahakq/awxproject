@@ -12,6 +12,7 @@
     name: "{{item.name}}"
     description: "{{item.description}}"
     baseurl: "{{item.url}}"
+    file: "{{item.file}}"
   loop: "{{repos}}"
 
 - name: Install packages
