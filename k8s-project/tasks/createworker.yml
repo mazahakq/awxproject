@@ -3,11 +3,12 @@
         masterserver: "test"
 #{{hostvars[master]['ansible_env'].ansible_hostname}}
     - name: Copy File kubeadmjoin.sh
+      become: no
       template:
         src: ./kubeadmjoin.j2
         dest: ~/kubeadmjoin.sh
         mode: "0755"
-        become: no
+        
 
   #- name: Add kub worker
   #  shell: ~/kubeadmjoin.sh
