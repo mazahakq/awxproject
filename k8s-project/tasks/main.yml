@@ -25,7 +25,7 @@
     pkg: "{{packages.name}}"
     state: present
     disable_gpg_check: yes
-  when: packages.type is role or role == "master"
+  when: role == "master"
 
 - name: service add enable start
   systemd:
