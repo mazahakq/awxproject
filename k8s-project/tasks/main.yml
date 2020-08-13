@@ -32,3 +32,9 @@
     enabled: yes
     state: started
   loop: "{{services_add}}"
+
+- name: Create groups
+  group:
+    name: "{{item}}"     
+    state: present
+  loop: "{{group_add}}"

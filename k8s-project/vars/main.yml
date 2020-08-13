@@ -13,6 +13,8 @@ repos:
     - { name: "kubernetes", file: kubernetes.repo, type: "file" }
 services_add:
     - docker
+group_add:
+    - docker
 packages:
     - docker-ce
     - docker-ce-cli
