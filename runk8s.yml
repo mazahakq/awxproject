@@ -5,3 +5,11 @@
   gather_facts: yes
   roles:
     - k8s-project
+
+- name: Kubctl
+  hosts: master
+  gather_facts: yes
+  roles:
+    - kub-project
+
+  
