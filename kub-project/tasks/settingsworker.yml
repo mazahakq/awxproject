@@ -2,3 +2,7 @@
   shell: kubectl label node {{item}} node-role.kubernetes.io/worker=worker
   with_items: "{{ groups['all'] }}"
   when: item != 'master'
+
+- name: images pull
+  become: yes
+  shell: kubeadm config images pull
