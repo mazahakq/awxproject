@@ -1,0 +1,6 @@
+---
+- name: RUN
+  hosts: localhost
+  become: yes
+  roles:
+    - community.kubernetes.kubectl
