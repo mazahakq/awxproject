@@ -1,2 +1,11 @@
 ---
-- src: community.kubernetes.kubectl
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Install Dependencies
+      package:
+        name: 'kubectl'
+  roles:
+    - galaxyproject.kubectl
+    - role: community.kubernetes.kubectl
+      become: true
