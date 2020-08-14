@@ -1,4 +1,4 @@
-    - name: label kub worker
-      host: master
-      shell: kubectl label node {{item}} node-role.kubernetes.io/worker=worker
-      with_items: "{{ groups['all'] }}"
+- name: label kub worker
+  host: master
+  shell: kubectl label node {{item}} node-role.kubernetes.io/worker=worker
+  with_items: "{{ groups['all'] }}"
