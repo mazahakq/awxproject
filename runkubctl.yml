@@ -1,11 +1,3 @@
----
-- hosts: localhost
-  become: true
-  pre_tasks:
-    - name: Install Dependencies
-      package:
-        name: 'kubectl'
-  roles:
-    - galaxyproject.kubectl
-    - role: community.kubernetes.kubectl
-      become: true
+ - src: https://github.com/ansible-collections/community.kubernetes
+   version: master
+   name: some_role
