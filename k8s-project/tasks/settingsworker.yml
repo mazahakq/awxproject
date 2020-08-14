@@ -2,3 +2,4 @@
   host: master
   shell: kubectl label node {{item}} node-role.kubernetes.io/worker=worker
   with_items: "{{ groups['all'] }}"
+  when: item != master
