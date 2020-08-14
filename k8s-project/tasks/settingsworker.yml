@@ -1,5 +1,9 @@
-- name: label kub worker
+- name: Master kub
   hosts: master
-  shell: kubectl label node {{item}} node-role.kubernetes.io/worker=worker
-  with_items: "{{ groups['all'] }}"
-  when: item != master
+
+  tasks:
+
+  - name: label kub worker
+    shell: kubectl label node {{item}} node-role.kubernetes.io/worker=worker
+    with_items: "{{ groups['all'] }}"
+    when: item != master
