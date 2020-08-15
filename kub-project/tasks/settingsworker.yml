@@ -28,6 +28,8 @@
 
 - name: kubectlcred initial docker
   shell: ~/kubectlcred.sh
+  register: fail_me
+  failed_when: "'AlreadyExists' not in fail_me.stderr and fail_me.rc != 0"
 
 - name: images pods create
   shell: kubectl apply -f ~/mypods.yaml
