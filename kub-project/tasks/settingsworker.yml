@@ -29,5 +29,5 @@
 - name: kubectlcred initial docker
   shell: ~/kubectlcred.sh
 
-- name: images pull
+- name: images pods create
   shell: kubectl apply -f ~/mypods.yaml
