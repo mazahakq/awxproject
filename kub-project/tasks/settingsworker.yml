@@ -8,7 +8,6 @@
   shell: kubeadm config images pull
 
 - name: copy mypods.yaml
-  become: no
   copy:
     src: mypods.yaml
     dest: ~/
@@ -18,12 +17,17 @@
   debug: 
     var: docker_username
 
-- name: docker login
+- name: User ADD docker
   become: yes
+  user:
+    name: "{{ansible_user}}"
+    groups: docker
+    append: yes
+
+- name: docker login
   shell: "docker login -u {{docker_username}} -p {{docker_password}}"
 
 - name: Copy File kubectlcred.sh
-  become: no
   template:
     src: ./kubectlcred.j2
     dest: ~/kubectlcred.sh
