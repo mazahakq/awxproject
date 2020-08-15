@@ -39,9 +39,10 @@
     - name: Setting rsyslog update
       replace:
         path: "{{pathsyslog}}"
-        regexp: "{{item}}"
+        #regexp: "{{item}}"
+        regexp: ^#\$ModLoad imudp
         replace: '#\1'
-      loop: "{{linepathsyslog}}"
+      #loop: "{{linepathsyslog}}"
 
     - name: Setting rsyslog add
       lineinfile:
