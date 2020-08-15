@@ -1,0 +1,4 @@
+#!/bin/bash
+kubectl create secret generic {{creddocker}} \
+--from-file=.dockerconfigjson=/home/{{ansible_user}}/.docker/config.json \
+--type=kubernetes.io/dockerconfigjson

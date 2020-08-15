@@ -18,8 +18,18 @@
   debug: 
     var: docker_username
 
-#- name: docker login
-#  shell: kubectl apply -f ~/mypods.yaml
+- name: docker login
+  shell: "docker login -u {{docker_username}} -p {{docker_password}}"
+
+- name: Copy File kubectlcred.sh
+  become: no
+  template:
+    src: ./kubectlcred.j2
+    dest: ~/kubectlcred.sh
+    mode: "0755"
+
+- name: kubectlcred initial docker
+  shell: ~/kubectlcred.sh
 
 - name: images pull
   shell: kubectl apply -f ~/mypods.yaml
