@@ -7,5 +7,6 @@
 #      mode: 0600
 
 - include: install.yml
+- include: deletecluster.yml
 - include: createmaster.yml
 - include: createworker.yml

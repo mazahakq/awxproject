@@ -32,7 +32,7 @@ filecopy:
 kubtoken: "4l5d5h.zxi3j1k0cib36zdy"
 #kubeadm alpha certs certificate-key --certificate-key
 kubcert: "36779b8c0c6ad1c3387fc9da7ddd2f70a51be22762a6acf18cfe847cd364fcd9"
-kubcidr: "10.10.0.0/16"
+kubcidr: "10.244.0.0/16"
 kubsubnet: #type web, file
     - {
           name: kube-flannel.yml,

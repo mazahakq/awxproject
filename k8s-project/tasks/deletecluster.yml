@@ -1,0 +1,9 @@
+---
+- name: delete kubernetes
+  shell: kubeadm reset -f
+
+- name: delete kubernetes subnet
+  file:
+    dest: /etc/cni/net.d
+    recurse: yes
+    state: absent
