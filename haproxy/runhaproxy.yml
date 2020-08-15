@@ -40,7 +40,7 @@
       lineinfile:
         dest: "{{pathsyslog}}"
         #regexp: '^#.{{item}}'
-        regexp: '^#\s*ModLoad imudp.*$'
+        regexp: '^#.ModLoad imudp$'
         line: '$ModLoad imudp'
       #loop: "{{linepathsyslog}}"
 
