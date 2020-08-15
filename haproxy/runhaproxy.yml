@@ -14,8 +14,8 @@
     pathsyslog: /etc/rsyslog.conf
     pathconfloghaproxy: /etc/rsyslog.d/haproxy.conf
     linepathsyslog:
-                  - $ModLoad imudp
-                  - $UDPServerRun 514
+                  - ModLoad imudp
+                  - UDPServerRun 514
 
   tasks:
     - name: Install HAProxy
@@ -39,10 +39,9 @@
     - name: Setting rsyslog update
       lineinfile:
         dest: "{{pathsyslog}}"
-        #regexp: '^#.{{item}}'
-        regexp: '^#.ModLoad imudp$'
-        line: '$ModLoad imudp'
-      #loop: "{{linepathsyslog}}"
+        regexp: '^#.{{item}}$'
+        line: '${{item}}'
+      loop: "{{linepathsyslog}}"
 
     - name: Setting rsyslog add
       lineinfile:
