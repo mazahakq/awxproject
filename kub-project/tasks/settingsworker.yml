@@ -19,6 +19,7 @@
     var: docker_username
 
 - name: docker login
+  become: yes
   shell: "docker login -u {{docker_username}} -p {{docker_password}}"
 
 - name: Copy File kubectlcred.sh
