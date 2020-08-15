@@ -6,9 +6,16 @@
 
   vars:
     packet: haproxy
-    service: haproxy
+    service: 
+           - haproxy
+           - rsyslog
     pathconfiglocal: ./haproxy.cfg
     pathconfig: /etc/haproxy/haproxy.cfg
+    pathsyslog: /etc/rsyslog.conf
+    pathconfloghaproxy: /etc/rsyslog.d/haproxy.conf
+    linepathsyslog:
+                  - $ModLoad imudp
+                  - $UDPServerRun 514
 
   tasks:
     - name: Install HAProxy
@@ -18,16 +25,10 @@
     
     - name: Service Start HAProxy
       systemd:
-        service: "{{service}}"
+        service: "{{item}}"
         enabled: yes
         state: started
-
-#    - name: Update files
-#      lineinfile:
-#        path: "{{pathconfig}}"
-#        line: 'frontend my_http
-#                bind *:80'
-#        backup: yes
+      loop: "{{service}}"
 
     - name: copy file haproxy
       copy:
@@ -35,8 +36,31 @@
         dest: "{{pathconfig}}"
         backup: yes
 
+    - name: Setting rsyslog update
+      replace:
+        path: "{{pathsyslog}}"
+        regexp: "^{{item}}"
+        replace: "#{{item}}"
+      loop: "{{linepathsyslog}}"
+
+    - name: Setting rsyslog add
+      lineinfile:
+        path: "{{pathsyslog}}"
+        line: $UDPServerAddress 127.0.0.1
+        backup: yes
+
+    - name: Setting rsyslog haproxy log
+      lineinfile:
+        path: "{{pathconfloghaproxy}}"
+        line: local2.* /var/log/haproxy.log
+        create: yes
+
     - name: service restart
       systemd:
-        service: "{{service}}"
+        service: "{{item}}"
         state: restarted
         daemon_reload: yes
+      loop: "{{service}}"
+
+
+
