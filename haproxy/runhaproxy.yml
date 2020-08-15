@@ -1,0 +1,21 @@
+---
+- name: HAProxy start
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    packet: haproxy
+    service: haproxy
+
+  tasks:
+    - name: Install HAProxy
+      yum:
+        pkg: "{{packet}}"
+        state: present
+    
+    - name: Service Start HAProxy
+      systemd:
+        service: "{{service}}"
+        enabled: yes
+        state: started
