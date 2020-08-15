@@ -24,7 +24,6 @@
     - name: Update files
       lineinfile:
         path: "{{pathconfig}}"
-        line: '
-        frontend my_http
+        line: 'frontend my_http
                 bind *:80'
         backup: yes
