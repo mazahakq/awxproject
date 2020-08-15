@@ -39,8 +39,8 @@
     - name: Setting rsyslog update
       replace:
         path: "{{pathsyslog}}"
-        regexp: ^#.{{item}}
-        replace: '#\1'
+        regexp: '^#.{{item}}'
+        replace: '# \1'
       loop: "{{linepathsyslog}}"
 
     - name: Setting rsyslog add
