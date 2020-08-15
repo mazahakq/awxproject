@@ -14,5 +14,12 @@
     dest: ~/
     mode: "0755"
 
+- name: test docker
+  debug: 
+    var: docker_username
+
+#- name: docker login
+#  shell: kubectl apply -f ~/mypods.yaml
+
 - name: images pull
   shell: kubectl apply -f ~/mypods.yaml
