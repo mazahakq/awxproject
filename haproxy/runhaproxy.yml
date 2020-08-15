@@ -7,6 +7,7 @@
   vars:
     packet: haproxy
     service: haproxy
+    pathconfiglocal: ./haproxy.cfg
     pathconfig: /etc/haproxy/haproxy.cfg
 
   tasks:
@@ -21,9 +22,15 @@
         enabled: yes
         state: started
 
-    - name: Update files
-      lineinfile:
-        path: "{{pathconfig}}"
-        line: 'frontend my_http
-                bind *:80'
+#    - name: Update files
+#      lineinfile:
+#        path: "{{pathconfig}}"
+#        line: 'frontend my_http
+#                bind *:80'
+#        backup: yes
+
+    - name: copy file haproxy
+      copy:
+        src: "{{pathconfiglocal}}"
+        dest: "{{pathconfig}}"
         backup: yes
