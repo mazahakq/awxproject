@@ -7,6 +7,7 @@
   vars:
     packet: haproxy
     service: haproxy
+    pathconfig: /etc/haproxy/haproxy.cfg
 
   tasks:
     - name: Install HAProxy
@@ -19,3 +20,11 @@
         service: "{{service}}"
         enabled: yes
         state: started
+
+    - name: Update files
+      lineinfile:
+        path: "{{pathconfig}}"
+        line: '
+        frontend my_http
+                bind *:80'
+        backup: yes

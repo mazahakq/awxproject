@@ -31,7 +31,7 @@
     copy:
       src: "{{file_src}}"
       dest: "{{file_dest}}"
-      mode: 0755
+      mode: '0755'
 
   - name: DhcpClientConfig create line
     copy:
