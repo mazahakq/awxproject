@@ -40,8 +40,8 @@
       replace:
         path: "{{pathsyslog}}"
         #regexp: "{{item}}"
-        regexp: ^#\$ModLoad imudp
-        replace: '#\1'
+        regexp: '^#\$ModLoad imudp'
+        replace: '\1'
       #loop: "{{linepathsyslog}}"
 
     - name: Setting rsyslog add
