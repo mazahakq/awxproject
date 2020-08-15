@@ -7,3 +7,6 @@
     dest: /etc/cni/net.d
     recurse: yes
     state: absent
+
+- name: Reboot Servers
+  reboot:
