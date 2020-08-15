@@ -6,3 +6,13 @@
 - name: images pull
   become: yes
   shell: kubeadm config images pull
+
+- name: copy mypods.yaml
+  become: no
+  copy:
+    src: mypods.yaml
+    dest: ~/
+    mode: "0755"
+
+- name: images pull
+  shell: kubectl apply -f ~/mypods.yaml
