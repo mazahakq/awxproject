@@ -34,3 +34,9 @@
         src: "{{pathconfiglocal}}"
         dest: "{{pathconfig}}"
         backup: yes
+
+    - name: service restart
+      systemd:
+        service: "{{service}}"
+        state: restarted
+        daemon_reload: yes
