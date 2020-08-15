@@ -50,6 +50,12 @@
     state: present
   loop: "{{group_add}}"
 
+- name: User ADD docker
+  user:
+    name: "{{ansible_user}}"
+    groups: docker
+    append: yes
+
 - name: Off SWAP
   shell: swapoff -a
 

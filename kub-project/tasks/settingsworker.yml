@@ -17,13 +17,6 @@
   debug: 
     var: docker_username
 
-- name: User ADD docker
-  become: yes
-  user:
-    name: "{{ansible_user}}"
-    groups: docker
-    append: yes
-
 - name: docker login
   shell: "docker login -u {{docker_username}} -p {{docker_password}}"
 
