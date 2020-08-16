@@ -34,7 +34,7 @@
 
 - name: Create and start services
   docker_compose:
-    project_src: jenkins
+    project_src: ./jenkins
   register: output
 - name: Debug Docker
   debug:
