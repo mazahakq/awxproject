@@ -28,7 +28,7 @@
     name: jenkinsapp
     image: "{{packetj}}"
     state: started
-    user: "jenkins:jenkins"
+    user: "1002:1002"
     restart_policy: always
     volumes:
            - /var/jenkins_home:/var/jenkins_home
