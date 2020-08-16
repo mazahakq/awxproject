@@ -1,5 +1,6 @@
 homejenkins: /var/jenkins_home
 userj: jenkins
+idguserj: 2000
 packetj: jenkins/jenkins
 packages:
     - { name: "python-pip" }
