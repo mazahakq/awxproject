@@ -28,6 +28,7 @@
     name: jenkinsapp
     image: "{{packetj}}"
     state: started
+    user: "{{userj}}"
     restart_policy: always
     devices:
            - "{{homejenkins}}:{{homejenkins}}"
