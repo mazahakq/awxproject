@@ -7,11 +7,12 @@
   become: yes
   shell: kubeadm config images pull
 
-- name: copy mypods.yaml
+- name: copy yaml
   copy:
-    src: mypods.yaml
+    src: "{{item}}"
     dest: ~/
     mode: "0755"
+  loop: "{{mypods}}"
 
 - name: test docker
   debug: 
@@ -20,16 +21,19 @@
 - name: docker login
   shell: "docker login -u {{docker_username}} -p {{docker_password}}"
 
-- name: Copy File kubectlcred.sh
+- name: Copy File template sh
   template:
-    src: ./kubectlcred.j2
-    dest: ~/kubectlcred.sh
+    src: "./{{item}}.j2"
+    dest: "~/{{item}}.sh"
     mode: "0755"
+  loop: "{{mytemplates}}"
 
-- name: kubectlcred initial docker
-  shell: ~/kubectlcred.sh
+- name: shell kubectl
+  shell: "~/{{item}}.sh"
   register: fail_me
   failed_when: "'AlreadyExists' not in fail_me.stderr and fail_me.rc != 0"
+  loop: "{{mytemplates}}"
 
 - name: images pods create
-  shell: kubectl apply -f ~/mypods.yaml
+  shell: "kubectl apply -f ~/{{item}}"
+  loop: "{{mypods}}"

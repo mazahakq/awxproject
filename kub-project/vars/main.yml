@@ -1,1 +1,7 @@
 creddocker: regcred
+mypods: 
+     - mypods.yaml
+     - gitlabadd.yaml
+
+mytemplates:
+    - kubectlcred
