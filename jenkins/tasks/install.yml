@@ -28,10 +28,10 @@
     name: jenkinsapp
     image: "{{packetj}}"
     state: started
-    user: "1002:1002"
+    user: "jenkins:jenkins"
     restart_policy: always
-    devices:
-           - "{{homejenkins}}:{{homejenkins}}"
+    volumes:
+           - /var/jenkins_home:/var/jenkins_home
     ports:
            - "8080:8080"
            - "50000:50000"
