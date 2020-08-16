@@ -1,0 +1,18 @@
+- name: Create a directory
+  file:
+    path: "{{homejenkins}}"
+    state: directory
+    mode: '0755'
+
+- name: application container
+  docker:
+    name: jenkinsapp
+    image: jenkins/jenkins
+    state: started
+    pull: always
+    devices:
+    - "jenkins_home:/var/jenkins_home:rwm"
+    ports:
+    - "8080:8080"
+    - "50000:50000"
+

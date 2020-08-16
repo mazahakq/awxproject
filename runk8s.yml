@@ -4,6 +4,7 @@
   become: yes
   gather_facts: yes
   roles:
+    - docker
     - k8s-project
 
 - name: Kubctl

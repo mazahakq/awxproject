@@ -1,26 +1,15 @@
 ---
 # vars file for k8s-project
-
-position: test
 localrep: /etc/yum.repos.d/
 swaptextmount: /dev/mapper/centos-swap
 repos:
-    - {
-          name: "docker-ce",
-          file: docker-ce.repo,
-          url: "https://download.docker.com/linux/centos/docker-ce.repo",
-          type: "web",
-      }
     - { name: "kubernetes", file: kubernetes.repo, type: "file" }
 services_add:
     - docker
     - kubelet
-group_add:
+services_restart:
     - docker
 packages:
-    - { name: "docker-ce", type: "worker" }
-    - { name: "docker-ce-cli", type: "worker" }
-    - { name: "containerd.io", type: "worker" }
     - { name: "kubelet", type: "worker" }
     - { name: "kubeadm", type: "worker" }
     - { name: "lvm2", type: "worker" }

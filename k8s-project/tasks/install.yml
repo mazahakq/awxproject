@@ -44,18 +44,6 @@
     state: started
   loop: "{{services_add}}"
 
-- name: Create groups
-  group:
-    name: "{{item}}"
-    state: present
-  loop: "{{group_add}}"
-
-- name: User ADD docker
-  user:
-    name: "{{ansible_user}}"
-    groups: docker
-    append: yes
-
 - name: Off SWAP
   shell: swapoff -a
 
@@ -64,3 +52,10 @@
     path: /etc/fstab
     regexp: "^{{swaptextmount}}"
     replace: "#{{swaptextmount}}"
+
+- name: service restart
+  systemd:
+    service: "{{item}}"
+    state: restarted
+    daemon_reload: yes
+  loop: "{{services_restart}}"
