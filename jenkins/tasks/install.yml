@@ -38,14 +38,14 @@
     user: "{{idguserj}}:{{idguserj}}"
     restart_policy: always
     privileged: yes
-    volumes:
-      - "jenkins-data:{{homejenkins}}"
-      - "jenkins-docker-certs:{{crtjenkins}}"
+    #volumes:
+    #  - "jenkins-data:{{homejenkins}}"
+    #  - "jenkins-docker-certs:{{crtjenkins}}"
     ports:
       - "8080:8080"
       - "50000:50000"
     mounts:
-      - { labels: jenkins-data, source: "{{homejenkins}}", type: volume }
-      - { labels: jenkins-docker-certs, type: volume }
+      - { labels: jenkins-data, source: "{{homejenkins}}", type: volume, target: "{{homejenkins}}"}
+      - { labels: jenkins-docker-certs, type: volume , target: "{{crtjenkins}}"}
     networks:
       - { name: jenkins, aliases: docker }
