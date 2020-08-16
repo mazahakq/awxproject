@@ -1,6 +1,7 @@
-version: '2.0'
+version: '3.8'
 services:
   jenkins:
+    restart: always
     image: jenkins/jenkins:lts
     ports:
     - "8080:8080"
