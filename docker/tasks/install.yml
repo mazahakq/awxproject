@@ -1,0 +1,40 @@
+- name: Download web repo
+  get_url:
+    url: "{{item.url}}"
+    dest: "{{localrep}}{{item.file}}"
+  loop: "{{repos}}"
+  when: item.type == "web"
+
+- name: Download file repo
+  copy:
+    src: "{{item.file}}"
+    dest: "{{localrep}}{{item.file}}"
+  loop: "{{repos}}"
+  when: item.type == "file"
+
+- name: Install packages
+  yum:
+    pkg: "{{item.name}}"
+    state: present
+    disable_gpg_check: yes
+  loop: "{{packages}}"
+
+- name: service add enable start
+  systemd:
+    service: "{{item}}"
+    enabled: yes
+    state: started
+  loop: "{{services_add}}"
+
+- name: Create groups
+  group:
+    name: "{{item}}"
+    state: present
+  loop: "{{group_add}}"
+
+- name: User ADD docker
+  user:
+    name: "{{ansible_user}}"
+    groups: "{{item}}"
+    append: yes
+  loop: "{{group_add}}"
