@@ -28,6 +28,7 @@
 - name: Install packages PIP
   pip:
     name: "{{item.name}}"
+    state: latest
   loop: "{{packages_pip}}"
 
 - name: Create and start services

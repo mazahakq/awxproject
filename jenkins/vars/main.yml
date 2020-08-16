@@ -6,5 +6,6 @@ packetj: jenkins/jenkins:lts
 packages:
     - { name: "python-pip" }
 packages_pip:
+    - { name: "pip" }
     - { name: "docker-py" }
     - { name: "docker-compose" }
