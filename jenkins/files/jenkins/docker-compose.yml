@@ -9,5 +9,5 @@ services:
     - jenkins-data:/var/jenkins_home
     - jenkins-docker-certs:/certs/client
 volumes:
-  jenkins-docker-certs: {}
   jenkins-data: {}
+  jenkins-docker-certs: {}
