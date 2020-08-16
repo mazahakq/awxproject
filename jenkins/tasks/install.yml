@@ -7,7 +7,7 @@
   file:
     path: "{{homejenkins}}"
     state: directory
-    mode: '0755'
+    mode: '0775'
     owner: "{{userj}}"
     group: "{{userj}}"
 
@@ -28,7 +28,7 @@
     name: jenkinsapp
     image: "{{packetj}}"
     state: started
-    user: "{{userj}}"
+    user: "{{userj}}:{{userj}}"
     restart_policy: always
     devices:
            - "{{homejenkins}}:{{homejenkins}}"
