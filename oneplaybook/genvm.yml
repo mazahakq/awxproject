@@ -1,0 +1,27 @@
+- name: Generator uid new vm
+  hosts: all
+
+  tasks:
+
+  - name: Check file new_product_uuid
+    become: no
+    stat:
+      path: ~/new_product_uuid
+    register: stat_result
+
+  - name: Create the file new_product_uuid
+    become: no
+    shell: uuidgen > ~/new_product_uuid
+    when: not stat_result.stat.exists
+
+  - name: copy new product_uuid
+    become: yes
+    copy:
+      remote_src: yes
+      src: "/home/{{ansible_user}}/new_product_uuid"
+      dest: /sys/class/dmi/id/product_uuid
+      mode: u=r,g=,o=
+
+  - name: Reboot host
+    become: yes
+    reboot:
