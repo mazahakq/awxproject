@@ -32,6 +32,11 @@
     #executable: pip3.6
   loop: "{{packages_pip}}"
 
+- name: Synchronization project
+  synchronize:
+    src: ./jenkins
+    dest: ~/jenkins
+
 - name: Create and start services
   docker_compose:
     project_src: ./jenkins
