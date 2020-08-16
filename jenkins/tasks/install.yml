@@ -29,7 +29,7 @@
   pip:
     name: "{{item.name}}"
     state: latest
-    executable: pip3.6
+    #executable: pip3.6
   loop: "{{packages_pip}}"
 
 - name: Create and start services
