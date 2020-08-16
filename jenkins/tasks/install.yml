@@ -1,6 +1,13 @@
+- name: Create group jenkins
+  group:
+    name: "{{userj}}"
+    state: present
+    gid: "{{idguserj}}"
+
 - name: Create user jenkins
   user:
     name: "{{userj}}"
+    uid: "{{idguserj}}"
     comment: jenkins
 
 - name: Create a directory
@@ -28,10 +35,10 @@
     name: jenkinsapp
     image: "{{packetj}}"
     state: started
-    user: "1002:1002"
+    user: "{{idguserj}}:{{idguserj}}"
     restart_policy: always
     volumes:
-           - /var/jenkins_home:/var/jenkins_home
+           - "{{homejenkins}}:{{homejenkins}}"
     ports:
            - "8080:8080"
            - "50000:50000"
