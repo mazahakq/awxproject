@@ -35,7 +35,7 @@
 - name: Synchronization project
   copy:
     src: jenkins
-    dest: ~/jenkins
+    dest: ~/
 
 - name: Create and start services
   docker_compose:
