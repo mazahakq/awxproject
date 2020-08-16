@@ -5,14 +5,13 @@
     mode: '0755'
 
 - name: application container
-  docker:
+  docker_container:
     name: jenkinsapp
     image: jenkins/jenkins
     state: started
-    pull: always
+    restart_policy: always
     devices:
-    - "jenkins_home:/var/jenkins_home:rwm"
+           - "jenkins_home:/var/jenkins_home:rwm"
     ports:
-    - "8080:8080"
-    - "50000:50000"
-
+           - "8080:8080"
+           - "50000:50000"
