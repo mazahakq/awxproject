@@ -5,6 +5,6 @@ idguserj: 2000
 packetj: jenkins/jenkins:lts
 packages:
     - { name: "python-pip" }
-    - { name: "docker-compose" }
 packages_pip:
     - { name: "docker-py" }
+    - { name: "docker-compose" }
