@@ -45,7 +45,13 @@
       - "8080:8080"
       - "50000:50000"
     mounts:
-      - { labels: jenkins-data, source: "{{homejenkins}}", type: volume, target: "{{homejenkins}}"}
-      - { labels: jenkins-docker-certs, type: volume , target: "{{crtjenkins}}"}
+      - target: "{{homejenkins}}"
+        labels: jenkins-data
+        source: "{{homejenkins}}"
+        type: volume
+      - target: "{{crtjenkins}}"
+        labels: jenkins-docker-certs
+        type: volume
     networks:
-      - { name: jenkins, aliases: docker }
+      - name: jenkins
+        aliases: docker
