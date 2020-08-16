@@ -2,35 +2,46 @@
   hosts: all
 
   vars:
-    pathguid: /sys/class/dmi/id/product_uuid
-    newfile: new_product_uuid
+    #pathguid: /sys/class/dmi/id/product_uuid
+    #newfile: new_product_uuid
+    idmachine: /etc/machine-id
 
   tasks:
 
-  - name: Check file new_product_uuid
-    become: no
-    stat:
-      path: "~/{{newfile}}"
-    register: stat_result
+  #- name: Check file new_product_uuid
+  #  become: no
+  #  stat:
+  #    path: "~/{{newfile}}"
+  #  register: stat_result
 
-  - name: Create the file new_product_uuid
-    become: no
-    shell: "uuidgen > ~/{{newfile}}"
-    when: not stat_result.stat.exists
+  #- name: Create the file new_product_uuid
+  #  become: no
+  #  shell: "uuidgen > ~/{{newfile}}"
+  #  when: not stat_result.stat.exists
 
-  - name: permissions RW
-    file:
-      path: "{{pathguid}}"
-      state: touch
-      mode: u+rw
+  #- name: permissions RW
+  #  file:
+  #    path: "{{pathguid}}"
+  #    state: touch
+  #    mode: u+rw
 
-  - name: copy new product_uuid
+  #- name: copy new product_uuid
+  #  become: yes
+  #  copy:
+  #    remote_src: yes
+  #    src: "~/{{newfile}}"
+  #    dest: "{{pathguid}}"
+  #    mode: '0400'
+
+  - name: Remove file
     become: yes
-    copy:
-      remote_src: yes
-      src: "~/{{newfile}}"
-      dest: "{{pathguid}}"
-      mode: '0400'
+    file:
+      path: "{{idmachine}}"
+      state: absent
+
+  - name: Generate
+    become: yes
+    shell: "dbus-uuidgen --ensure={{idmachine}}"
 
   - name: Reboot host
     become: yes
