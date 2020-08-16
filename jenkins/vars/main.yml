@@ -1,8 +1,8 @@
-homejenkins: /var/jenkins_home:lts
+homejenkins: /var/jenkins_home
 crtjenkins: /certs/client
 userj: jenkins
 idguserj: 2000
-packetj: jenkins/jenkins
+packetj: jenkins/jenkins:lts
 packages:
     - { name: "python-pip" }
 packages_pip:
