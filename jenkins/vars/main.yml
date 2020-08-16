@@ -4,9 +4,9 @@ userj: jenkins
 idguserj: 2000
 packetj: jenkins/jenkins:lts
 packages:
-    #- { name: "python-pip" }
+    - { name: "python-pip" }
     #- { name: "python3-pip" }
     #- { name: "python36-setuptools" }
 packages_pip:
-    #- { name: "docker-py" }
-    #- { name: "docker-compose" }
+    - { name: "docker-py" }
+    - { name: "docker-compose" }
