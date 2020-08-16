@@ -30,28 +30,36 @@
     name: "{{item.name}}"
   loop: "{{packages_pip}}"
 
-- name: application container
-  docker_container:
-    name: jenkinsapp
-    image: "{{packetj}}"
-    state: started
-    user: "{{idguserj}}:{{idguserj}}"
-    restart_policy: always
-    privileged: yes
-    #volumes:
-    #  - "jenkins-data:{{homejenkins}}"
-    #  - "jenkins-docker-certs:{{crtjenkins}}"
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    mounts:
-      - target: "{{homejenkins}}"
-        labels: jenkins-data
-        source: "{{homejenkins}}"
-        type: volume
-      - target: "{{crtjenkins}}"
-        labels: jenkins-docker-certs
-        type: volume
-    networks:
-      - name: jenkins
-        aliases: docker
+- name: Create and start services
+  docker_compose:
+    project_src: docker-compose.yml
+  register: output
+- name: Debug Docker
+  debug:
+    var: output
+
+#- name: application container
+#  docker_container:
+#    name: jenkinsapp
+#    image: "{{packetj}}"
+#    state: started
+#    user: "{{idguserj}}:{{idguserj}}"
+#    restart_policy: always
+#    privileged: yes
+#    #volumes:
+#    #  - "jenkins-data:{{homejenkins}}"
+#    #  - "jenkins-docker-certs:{{crtjenkins}}"
+#    ports:
+#      - "8080:8080"
+#      - "50000:50000"
+#    mounts:
+#      - target: "{{homejenkins}}"
+#        labels: jenkins-data
+#        source: "{{homejenkins}}"
+#        type: volume
+#      - target: "{{crtjenkins}}"
+#        labels: jenkins-docker-certs
+#        type: volume
+#    networks:
+#      - name: jenkins
+#        aliases: docker
