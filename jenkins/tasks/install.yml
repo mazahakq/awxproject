@@ -4,6 +4,18 @@
     state: directory
     mode: '0755'
 
+- name: Install packages
+  yum:
+    pkg: "{{item.name}}"
+    state: present
+    disable_gpg_check: yes
+  loop: "{{packages}}"
+
+- name: Install packages PIP
+  pip:
+    name: "{{item.name}}"
+  loop: "{{packages_pip}}"
+
 - name: application container
   docker_container:
     name: jenkinsapp

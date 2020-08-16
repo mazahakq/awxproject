@@ -1,1 +1,5 @@
 homejenkins: /var/jenkins_home
+packages:
+    - { name: "python-pip" }
+packages_pip:
+    - { name: "docker-py" }
