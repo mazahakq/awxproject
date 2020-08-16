@@ -14,7 +14,7 @@
   file:
     path: "{{homejenkins}}"
     state: directory
-    mode: '0775'
+    mode: "0775"
     owner: "{{userj}}"
     group: "{{userj}}"
 
@@ -37,8 +37,15 @@
     state: started
     user: "{{idguserj}}:{{idguserj}}"
     restart_policy: always
+    privileged: yes
     volumes:
-           - "{{homejenkins}}:{{homejenkins}}"
+      - "jenkins-data:{{homejenkins}}"
+      - "jenkins-docker-certs:{{crtjenkins}}"
     ports:
-           - "8080:8080"
-           - "50000:50000"
+      - "8080:8080"
+      - "50000:50000"
+    mounts:
+      - { labels: jenkins-data, source: "{{homejenkins}}", type: volume }
+      - { labels: jenkins-docker-certs, type: volume }
+    networks:
+      - { name: jenkins, aliases: docker }

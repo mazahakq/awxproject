@@ -1,4 +1,5 @@
-homejenkins: /var/jenkins_home
+homejenkins: /var/jenkins_home:lts
+crtjenkins: /certs/client
 userj: jenkins
 idguserj: 2000
 packetj: jenkins/jenkins
