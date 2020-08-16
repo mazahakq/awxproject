@@ -1,4 +1,4 @@
-- name: DhcpNameServer
+- name: settingshost
   hosts: all
   become: yes
 

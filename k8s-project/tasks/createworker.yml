@@ -12,4 +12,7 @@
     - name: Add kub worker
       shell: /home/{{ansible_user}}/kubeadmjoin.sh
 
+    - name: Reboot Worker
+      reboot:
+
   when: role == "worker"

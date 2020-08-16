@@ -53,4 +53,7 @@
       shell: "kubectl apply -f ~/{{item.name}}"
       loop: "{{kubsubnet}}"
 
+    - name: Reboot master
+      reboot:
+      
   when: role == "master"
