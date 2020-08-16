@@ -18,7 +18,7 @@
     become: yes
     copy:
       remote_src: yes
-      src: "/home/{{ansible_user}}/new_product_uuid"
+      src: "~/new_product_uuid"
       dest: /sys/class/dmi/id/product_uuid
       mode: u=r,g=,o=
 
