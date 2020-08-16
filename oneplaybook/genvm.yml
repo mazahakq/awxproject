@@ -1,26 +1,36 @@
 - name: Generator uid new vm
   hosts: all
 
+  vars:
+    pathguid: /sys/class/dmi/id/product_uuid
+    newfile: new_product_uuid
+
   tasks:
 
   - name: Check file new_product_uuid
     become: no
     stat:
-      path: ~/new_product_uuid
+      path: "~/{{newfile}}"
     register: stat_result
 
   - name: Create the file new_product_uuid
     become: no
-    shell: uuidgen > ~/new_product_uuid
+    shell: "uuidgen > ~/{{newfile}}"
     when: not stat_result.stat.exists
+
+  - name: permissions RW
+    file:
+      path: "{{pathguid}}"
+      state: touch
+      mode: u+rw
 
   - name: copy new product_uuid
     become: yes
     copy:
       remote_src: yes
-      src: "~/new_product_uuid"
-      dest: /sys/class/dmi/id/product_uuid
-      mode: u=r,g=,o=
+      src: "~/{{newfile}}"
+      dest: "{{pathguid}}"
+      mode: '0400'
 
   - name: Reboot host
     become: yes
