@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   jenkins:
+    container_name: jenkinsapp
     restart: always
     image: jenkins/jenkins:lts
     ports:
