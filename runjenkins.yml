@@ -1,8 +1,15 @@
 ---
-- name: RUN
+- name: Install master docker
   hosts: all
   become: yes
   gather_facts: yes
   roles:
     - docker
+  when: role == "master"
+
+- name: RUN
+  hosts: all
+  become: yes
+  gather_facts: yes
+  roles:
     - jenkins
