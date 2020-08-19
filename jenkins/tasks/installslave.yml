@@ -1,0 +1,6 @@
+- name: Install packages
+  yum:
+    pkg: "{{item.name}}"
+    state: present
+    disable_gpg_check: yes
+  loop: "{{packages_work}}"
