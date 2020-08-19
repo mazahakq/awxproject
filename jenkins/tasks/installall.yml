@@ -1,0 +1,24 @@
+#- name: Create group jenkins
+#  group:
+#    name: "{{userj}}"
+#    state: present
+#    gid: "{{idguserj}}"
+
+- name: Create user jenkins
+  user:
+    name: "{{userj}}"
+    comment: jenkins
+
+- name: Create a directory
+  file:
+    path: "{{homejenkins}}"
+    state: directory
+    mode: "0775"
+    owner: "{{userj}}"
+    group: "{{userj}}"
+
+- name: Set authorized key taken from file
+  authorized_key:
+    user: "{{userj}}"
+    state: present
+    key: "{{ lookup('file', 'my.pub') }}"

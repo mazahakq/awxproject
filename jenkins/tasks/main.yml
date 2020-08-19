@@ -6,4 +6,10 @@
 #      dest: /tmp/
 #      mode: 0600
 
-- include: install.yml
+- include: installall.yml
+
+- include: installmaster.yml
+  when: role == "master"
+
+- include: installslave.yml
+  when: role == "slave"

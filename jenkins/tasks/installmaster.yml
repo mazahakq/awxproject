@@ -1,15 +1,3 @@
-- name: Create group jenkins
-  group:
-    name: "{{userj}}"
-    state: present
-    gid: "{{idguserj}}"
-
-- name: Create user jenkins
-  user:
-    name: "{{userj}}"
-    uid: "{{idguserj}}"
-    comment: jenkins
-
 - name: Create a directory
   file:
     path: "{{homejenkins}}"
