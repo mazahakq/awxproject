@@ -5,6 +5,7 @@ packetj: jenkins/jenkins:lts
 packages:
     - { name: "python-pip" }
 packages_work:
-    - { name: "java-1.8.0-openjdk.x86_64"}   
+    - { name: "java-1.8.0-openjdk.x86_64"}
+    - { name: "git"}
 packages_pip:
     - { name: "docker-compose" }
