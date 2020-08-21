@@ -4,3 +4,9 @@
     state: present
     disable_gpg_check: yes
   loop: "{{packages_work}}"
+
+- name: User ADD docker
+  user:
+    name: "{{userj}}"
+    groups: "{{groupdocker}}"
+    append: yes

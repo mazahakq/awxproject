@@ -1,6 +1,7 @@
 homejenkins: /var/jenkins_home
 crtjenkins: /certs/client
 userj: jenkins
+groupdocker: docker
 packetj: jenkins/jenkins:lts
 packages:
     - { name: "python-pip" }
