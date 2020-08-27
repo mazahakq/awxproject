@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mywebdeploy
+  labels:
+    app: mywebapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      project: my
+      app: mywebapp
+  template:
+    metadata:
+      labels:
+        app: mywebapp
+        project: my
+    spec:   
+      containers:
+      - name: container-myapache
+        image: mazahakq/myapache:latest
+        ports:
+          - containerPort: 80
+      - name: container-tomcat
+        image: tomcat:latest
+        ports:
+          - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
+
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: mywebdeploy
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mywebdeploy
+  minReplicas: 5
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 50
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mywebservice
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30000
+  #externalIPs:
+  #  - 192.168.1.150
+  selector:
+    app: mywebapp
+  type: LoadBalancer
+
+#---
+#apiVersion: networking.k8s.io/v1beta1
+#kind: Ingress
+#metadata:
+#  name: my-ingress
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+#spec:
+#  rules:
+#  - http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          serviceName: mywebdeploy
+#          servicePort: 80
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: mywebingress
+spec:
+  backend:
+    serviceName: mywebservice
+    servicePort: 80
