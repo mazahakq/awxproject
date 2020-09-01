@@ -1,0 +1,24 @@
+version: '3.5'
+services:
+  nexus:
+    container_name: nexusapp
+    restart: always
+    image: sonatype/nexus3:latest
+    ports:
+      - "8081:8081"
+      - "5000:5000"
+      - "443:443"
+    volumes:
+      - nexus-data:/nexus-data
+    networks:
+      - nexus
+volumes:
+  nexus-data:
+    name: nexus-data
+    driver_opts:
+      type: "none"
+      device: "/mnt/share/nexus-data"
+      o: "bind"
+networks:
+  nexus:
+    name: nexus-network

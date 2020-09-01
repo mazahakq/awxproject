@@ -1,0 +1,12 @@
+- name: Synchronization project
+  copy:
+    src: nexus
+    dest: ~/
+
+- name: Create and start services
+  docker_compose:
+    project_src: ~/nexus
+  register: output
+- name: Debug Docker
+  debug:
+    var: output
