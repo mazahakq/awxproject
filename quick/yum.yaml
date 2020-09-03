@@ -1,0 +1,17 @@
+- name: yum install
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: Install packages
+    yum:
+      pkg: "{{packages}}"
+      state: "{{packages_op}}"
+
+  #Choices:
+  #  absent
+  #  installed
+  #  latest
+  #  present
+  #  removed
