@@ -1,0 +1,17 @@
+- name: yum install
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: service restart
+    systemd:
+      service: "{{item}}"
+      state: "{{operation}}"
+      daemon_reload: "{{reload}}"
+    loop: "{{services}}"
+
+#reloaded
+#restarted
+#started
+#stopped
